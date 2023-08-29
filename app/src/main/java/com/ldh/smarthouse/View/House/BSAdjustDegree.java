@@ -17,10 +17,10 @@ public class BSAdjustDegree extends BottomSheetDialogFragment {
     private int pos;
     private int degree;
     private ImageButton ibIncreaseDegree, ibDecreaseDegree;
-    private AdjustDegreeListener adjustDegreeListener;
+    private UpdateParamListener adjustDegreeListener;
     private TextView tvDegree;
 
-    public BSAdjustDegree(int pos, int degree, AdjustDegreeListener adjustDegreeListener) {
+    public BSAdjustDegree(int pos, int degree, UpdateParamListener adjustDegreeListener) {
         this.pos = pos;
         this.degree = degree;
         this.adjustDegreeListener = adjustDegreeListener;

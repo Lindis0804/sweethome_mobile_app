@@ -6,9 +6,10 @@
     android:background="@color/dark_blue"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/ivWallpaper"
@@ -16,64 +17,53 @@
             android:layout_height="150dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="40dp"
             android:scaleType="centerCrop"
             android:src="@drawable/lindis" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvAvatar"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:layout_marginTop="-45dp"
+                android:outlineAmbientShadowColor="@color/white"
+                android:outlineSpotShadowColor="@color/white"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="45dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvAvatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignBottom="@id/ivWallpaper"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="341dp"
-            android:layout_marginBottom="-30dp"
-            app:cardCornerRadius="30dp">
-
-            <ImageView
-                android:id="@+id/ivAvatar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/lindis" />
-        </androidx.cardview.widget.CardView>
-        <!--        <TextView-->
-        <!--            android:id="@+id/tvName"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_alignBottom="@+id/ivWallpaper"-->
-        <!--            android:layout_marginStart="5dp"-->
-        <!--            android:layout_marginBottom="5dp"-->
-        <!--            android:layout_toEndOf="@+id/cvAvatar"-->
-        <!--            android:ellipsize="end"-->
-        <!--            android:maxLines="1"-->
-        <!--            android:text="Đình Hiếu Lê"-->
-        <!--            android:textColor="@color/white"-->
-        <!--            android:textSize="20sp"-->
-        <!--            android:textStyle="bold" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/tvGmail"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@+id/tvName"-->
-        <!--            android:layout_alignParentEnd="true"-->
-        <!--            android:layout_marginStart="5dp"-->
-        <!--            android:layout_marginTop="4dp"-->
-        <!--            android:layout_marginEnd="5dp"-->
-        <!--            android:layout_toEndOf="@+id/cvAvatar"-->
-        <!--            android:text="hieuledinh0804@gmail.com"-->
-        <!--            android:textSize="15sp"-->
-        <!--            android:textColor="@color/white"-->
-        <!--            />-->
-    </RelativeLayout>
-
-    <LinearLayout
+                <ImageView
+                    android:id="@+id/ivAvatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/lindis" />
+            </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:orientation="vertical"
+        android:background="@drawable/custom_welcome_button"
+        android:text="Edit Profile"
+        android:textAllCaps="false"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/blue"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/custom_info_item"
         >
 
         <TextView
@@ -81,21 +71,29 @@
             android:layout_height="wrap_content"
             android:text="Gmail"
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvEmail"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="qavp@gmail.com"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:textSize="17sp"
+            />
     </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/custom_info_item"
         >
 
         <TextView
@@ -103,43 +101,59 @@
             android:layout_height="wrap_content"
             android:text="Name"
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Quang Anh"
-            android:textColor="@color/white" />
+            android:layout_marginStart="10dp"
+            android:text="Đình Hiếu Lê"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:textSize="17sp"
+            />
     </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/custom_info_item"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone number"
+            android:text="Phone Number"
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvPhoneNumber"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="0819019699"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:textSize="17sp"
+            />
     </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/custom_info_item"
         >
 
         <TextView
@@ -147,21 +161,29 @@
             android:layout_height="wrap_content"
             android:text="Location"
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvLocation"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Hà Tĩnh"
-            android:textColor="@color/white" />
+            android:layout_marginStart="10dp"
+            android:text="Nghi Xuân, Hà Tĩnh"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:textSize="17sp"
+            />
     </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/custom_info_item"
         >
 
         <TextView
@@ -169,13 +191,37 @@
             android:layout_height="wrap_content"
             android:text="Number of house"
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvNumOfHouse"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="8"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:textSize="17sp"
+            />
     </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_welcome_button"
+        android:text="Log out"
+        android:textAllCaps="false"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/blue"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        />
 </LinearLayout>

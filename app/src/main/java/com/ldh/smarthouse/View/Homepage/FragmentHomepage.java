@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,8 +25,10 @@ import com.ldh.smarthouse.Model.House;
 import com.ldh.smarthouse.Model.Response.DataResponse;
 import com.ldh.smarthouse.R;
 import com.ldh.smarthouse.View.House.ActivityHouse;
+import com.ldh.smarthouse.View.Sign.ActivitySign;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +47,7 @@ public class FragmentHomepage extends Fragment implements HouseClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_homepage,container,false);
         findId(v);
-        token = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE).getString("token","");
+        token = requireActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE).getString("token","");
         houseAdapter = new HouseAdapter(houses,FragmentHomepage.this);
         Utils.setRecyclerView(rvHouses,houseAdapter,new LinearLayoutManager(
                 getContext(),
@@ -72,14 +75,18 @@ public class FragmentHomepage extends Fragment implements HouseClickListener {
                    houses = res.getHouses();
                    houseAdapter.setData(houses);
                }
+               else if (response.code()>=400 && response.code()<500){
+                   Toast.makeText(getActivity(), "Your token is wrong or expired.", Toast.LENGTH_SHORT).show();
+                   Utils.redirectToActivitySign(getContext(),getActivity());
+               }
                else{
-                   Log.v("TAG","Error code :"+response.code());
+                   Log.v("TAG","Can no get houses");
                }
            }
 
            @Override
            public void onFailure(Call<DataResponse> call, Throwable t) {
-              Log.v("TAG","Get houses "+t.getMessage());
+              Log.v("TAG","Can not call get houses api :"+t.getMessage());
            }
        });
    }

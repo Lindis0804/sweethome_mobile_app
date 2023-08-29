@@ -9,12 +9,12 @@ public class DeviceRoom {
     private int room_id = -1;
     private int is_active = -1;
     private String param = "";
-    private String deviceName = "Refridgator";
-    private String deviceDetail="Panasonic";
-    private Date created_at = new Date();
-    private Date updated_at = new Date();
+    private String device_name = "Refridgator";
+    private String device_detail="Panasonic";
+    private String created_at = "";
+    private String updated_at = "";
     private Device device = new Device();
-    public DeviceRoom(String code, int _id, int device_id, int room_id, int is_active, String param, Date created_at, Date updated_at) {
+    public DeviceRoom(String code, int _id, int device_id, int room_id, int is_active, String param, String created_at, String updated_at) {
         this.code = code;
         this.id = _id;
         this.device_id = device_id;
@@ -89,36 +89,36 @@ public class DeviceRoom {
         this.param = param;
     }
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
-    public Date getUpdated_at() {
+    public String getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(Date updated_at) {
+    public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
 
-    public String getDeviceName() {
-        return deviceName;
+    public String getDevice_name() {
+        return device_name;
     }
 
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
+    public void setDevice_name(String device_name) {
+        this.device_name = device_name;
     }
 
-    public String getDeviceDetail() {
-        return deviceDetail;
+    public String getDevice_detail() {
+        return device_detail;
     }
 
-    public void setDeviceDetail(String deviceDetail) {
-        this.deviceDetail = deviceDetail;
+    public void setDevice_detail(String device_detail) {
+        this.device_detail = device_detail;
     }
 
     public Device getDevice() {

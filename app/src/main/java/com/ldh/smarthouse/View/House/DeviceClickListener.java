@@ -4,4 +4,5 @@ public interface DeviceClickListener {
     public void onSwitchDevice(int i);
 
     public void onDegreeClick(int i);
+    public void onDeviceInfoClick(int i);
 }

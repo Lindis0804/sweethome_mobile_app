@@ -9,6 +9,7 @@ public class User {
     private String email = "";
     private String password="";
     private int role = -1;
+    private  String avatar,wallpaper;
     private ArrayList<House> houses = new ArrayList<>();
 
     public User(int id, String name, String phone_number, String email, String password, int role, ArrayList<House> houses) {
@@ -80,5 +81,21 @@ public class User {
 
     public void setHouses(ArrayList<House> houses) {
         this.houses = houses;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getWallpaper() {
+        return wallpaper;
+    }
+
+    public void setWallpaper(String wallpaper) {
+        this.wallpaper = wallpaper;
     }
 }

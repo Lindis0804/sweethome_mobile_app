@@ -43,21 +43,19 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         if (deviceRooms.size() > 0) {
             DeviceRoom deviceRoom = deviceRooms.get(position);
             if (deviceRoom != null) {
+                if (deviceRoom.getDevice_id()<=9)
                 holder.ibDevice.setImageResource(Default.devices.get(deviceRoom.getDevice_id() - 1).getImage());
+                else{
+                    holder.ibDevice.setImageResource(Default.devices.get(8).getImage());
+                }
                 holder.switchDevice.setChecked(deviceRoom.getIs_active() > 0);
-                if (deviceRoom.getParam().length()>0) {
+                if (deviceRoom.getParam()!=null && deviceRoom.getParam().length()>0) {
                     holder.llDegree.setVisibility(View.VISIBLE);
                     holder.tvDegree.setText(deviceRoom.getParam() + "");
                 } else
                     holder.llDegree.setVisibility(View.INVISIBLE);
-                if (position%2==0){
-                    holder.tvDeviceName.setText("Điều hòa Panasonic 9000BTU");
-                    holder.tvDeviceDetail.setText("Panasonic");
-                }
-                else{
-                    holder.tvDeviceName.setText("Smart TV LG 43 inch FULL HD");
-                    holder.tvDeviceDetail.setText("GL");
-                }
+                holder.tvDeviceName.setText(deviceRoom.getDevice_name()+"");
+                holder.tvDeviceDetail.setText(deviceRoom.getDevice_detail()+"");
 
             }
         }
@@ -65,7 +63,10 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
+        if (deviceRooms !=null)
         return deviceRooms.size();
+        else
+            return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -73,6 +74,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         private Switch switchDevice;
         private TextView tvDegree, tvDeviceName, tvDeviceDetail;
         private LinearLayout llDegree;
+        private LinearLayout llDeviceInfo;
         private DeviceClickListener _deviceClickListener;
 
         public ViewHolder(@NonNull View itemView) {
@@ -83,6 +85,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
             tvDeviceName = itemView.findViewById(R.id.tvDeviceName);
             tvDeviceDetail = itemView.findViewById(R.id.tvDeviceDetail);
             llDegree = itemView.findViewById(R.id.llDegree);
+            llDeviceInfo = itemView.findViewById(R.id.llDeviceInfo);
             _deviceClickListener = deviceClickListener;
             switchDevice.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,7 +99,12 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
                     deviceClickListener.onDegreeClick(getAdapterPosition());
                 }
             });
-
+            llDeviceInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deviceClickListener.onDeviceInfoClick(getAdapterPosition());
+                }
+            });
         }
     }
 }

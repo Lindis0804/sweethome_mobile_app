@@ -26,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentDevices extends Fragment implements DeviceClickListener, AdjustDegreeListener {
+public class FragmentDevices extends Fragment implements DeviceClickListener, UpdateParamListener {
     private RecyclerView rvDevices;
     private ArrayList<DeviceRoom> deviceRooms = new ArrayList<>();
     private int roomId;
@@ -34,7 +34,7 @@ public class FragmentDevices extends Fragment implements DeviceClickListener, Ad
     private String token;
     private DataResponse res;
     private BSAdjustDegree bsAdjustDegree;
-
+    private BSDeviceInfo bsDeviceInfo;
     public FragmentDevices(ArrayList<DeviceRoom> deviceRooms) {
         this.deviceRooms = deviceRooms;
     }
@@ -96,6 +96,12 @@ public class FragmentDevices extends Fragment implements DeviceClickListener, Ad
     public void onDegreeClick(int i) {
         bsAdjustDegree = new BSAdjustDegree(i, Integer.parseInt(deviceRooms.get(i).getParam()), FragmentDevices.this);
         bsAdjustDegree.show(getActivity().getSupportFragmentManager(), "BSAdjustDegree");
+    }
+
+    @Override
+    public void onDeviceInfoClick(int i) {
+        bsDeviceInfo = new BSDeviceInfo(i,deviceRooms.get(i).getDevice_name(),deviceRooms.get(i).getDevice_detail(),FragmentDevices.this);
+        bsDeviceInfo.show(getActivity().getSupportFragmentManager(),"BSDeviceInfo");
     }
 
     public void getDeviceRooms() {
@@ -172,5 +178,35 @@ public class FragmentDevices extends Fragment implements DeviceClickListener, Ad
                 }
             });
         }
+    }
+
+    @Override
+    public void updateDevice(int i) {
+           String deviceName = bsDeviceInfo.getDeviceNameFromEditText();
+           String deviceDetail = bsDeviceInfo.getDeviceDetailFromEditText();
+           DeviceRoom deviceRoom = deviceRooms.get(i);
+           deviceRoom.setDevice_name(deviceName);
+           deviceRoom.setDevice_detail(deviceDetail);
+           ApiService.apiService.updateDeviceParam(token,deviceRoom.getId(),deviceRoom).enqueue(new Callback<DataResponse>() {
+               @Override
+               public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+                   if (response.code() == 200){
+                       deviceRooms.remove(i);
+                       deviceRooms.add(i,deviceRoom);
+                       deviceAdapter.setData(deviceRooms);
+                       Toast.makeText(getContext(), "Update device param successfully.", Toast.LENGTH_SHORT).show();
+                       Log.v("TAG","Update device param successfully.");
+                       bsDeviceInfo.dismiss();
+                   }
+                   else{
+                       Log.v("TAG","Can not update device param.");
+                   }
+               }
+
+               @Override
+               public void onFailure(Call<DataResponse> call, Throwable t) {
+                    Log.v("TAG","Can not call update device param api :"+t.getMessage());
+               }
+           });
     }
 }

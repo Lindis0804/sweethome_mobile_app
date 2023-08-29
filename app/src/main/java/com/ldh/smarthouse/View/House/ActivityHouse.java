@@ -5,6 +5,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -31,7 +32,7 @@ public class ActivityHouse extends AppCompatActivity {
     private DataResponse res;
     private String token;
     private int houseId;
-
+    private ImageButton ibBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,12 @@ public class ActivityHouse extends AppCompatActivity {
             tab.setText(rooms.get(pos).getName());
         }).attach();
         getRooms();
+        ibBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void findId() {
@@ -56,6 +63,7 @@ public class ActivityHouse extends AppCompatActivity {
         ibNoti = findViewById(R.id.ibNoti);
         tlRooms = findViewById(R.id.tlRooms);
         vpRooms = findViewById(R.id.vpRooms);
+        ibBack = findViewById(R.id.ibBack);
     }
 
     public void getRooms() {
