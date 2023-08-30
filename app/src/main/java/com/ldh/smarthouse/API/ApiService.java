@@ -15,7 +15,6 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-
 public interface ApiService {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     String url = "https://7c3a-2402-800-b2dd-da85-fcfb-2614-41c9-e2bf.ap.ngrok.io/";
