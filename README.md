@@ -36,7 +36,7 @@ For example:
 </div>
 
 
-## Result:
+## Result
 
 |<img src="./images/login_page.png" style="width:50%">|<img src="./images/home_list.png" style="width:50%">|<img src="./images/home_detail.png" style="width:50%">|
 |-----------------------------------------------------|-----------------------------------------------------|-----------------------------------------------------|
