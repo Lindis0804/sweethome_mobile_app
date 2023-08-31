@@ -28,25 +28,6 @@ git clone https://github.com/Lindis0804/sweethome_mobile_app
 
 ## Result:
 
-- Login:
-  <br/>
-<div align="center">
-<img src="./images/login_page.png" style="width:50%"/>
-</div>
-<br/>
-
-- House list:
-
-<br/>
-<div align="center">
-<img src="./images/home_list.png" style="width:50%"/>
-</div>
-<br/>
-
-- Room list of house and device list of room:
-
-<br/>
-<div align="center">
-<img src="./images/home_detail.png" style="width:50%"/>
-</div>
-<br/>
+|<img src="./images/login_page.png" style="width:50%">|<img src="./images/home_list.png" style="width:50%">|<img src="./images/home_detail.png" style="width:50%">|
+|-----------------------------------------------------|-----------------------------------------------------|-----------------------------------------------------|
+|Login|House List|Room and Device List|
