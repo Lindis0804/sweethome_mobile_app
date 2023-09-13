@@ -8,6 +8,11 @@
 
 Sweet Home is a system that helps you to control devices of your smart homes.
 
+Sweet Home includes 3 repositories:
+
+- [Mobile](https://github.com/Lindis0804/sweethome_mobile_app)
+- [Back-end](https://github.com/Lindis0804/sweethome_backend)
+- [Arduino - Esp32, Esp8266](https://github.com/Lindis0804/sweethome_arduino.git)
 ## What is this repo?
 
 This repo is mobile app of Sweet Home with three main functions: sign in, control device, adjust parameters.
