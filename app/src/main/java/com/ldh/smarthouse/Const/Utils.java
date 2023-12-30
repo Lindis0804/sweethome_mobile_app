@@ -2,10 +2,6 @@ package com.ldh.smarthouse.Const;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.View;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,7 +29,6 @@ public class Utils {
         activity.startActivity(intent);
     }
     public static String getToken(FragmentActivity activity){
-        String token = activity.getSharedPreferences("UserInfo",Context.MODE_PRIVATE).getString("token","");
-        return token;
+        return activity.getSharedPreferences("UserInfo",Context.MODE_PRIVATE).getString("token","");
     }
 }

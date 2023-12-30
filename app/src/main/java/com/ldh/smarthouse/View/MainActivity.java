@@ -5,23 +5,24 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
+import com.ldh.smarthouse.Const.Constants;
+import com.ldh.smarthouse.Const.PreferenceManager;
 import com.ldh.smarthouse.R;
+import com.ldh.smarthouse.View.Homepage.ActivityHomepage;
 import com.ldh.smarthouse.View.Sign.ActivitySign;
 
 public class MainActivity extends AppCompatActivity {
-    private AppCompatButton bGetStarted;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bGetStarted = findViewById(R.id.bGetStarted);
-        bGetStarted.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ActivitySign.class));
-            }
-        });
+        PreferenceManager preferenceManager = new PreferenceManager(getApplicationContext());
+        String token = preferenceManager.getString(Constants.KEY_TOKEN);
+        if (token != null){
+            startActivity(new Intent(getApplicationContext(), ActivityHomepage.class));
+        }
+        AppCompatButton bGetStarted = findViewById(R.id.bGetStarted);
+        bGetStarted.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ActivitySign.class)));
     }
 }
