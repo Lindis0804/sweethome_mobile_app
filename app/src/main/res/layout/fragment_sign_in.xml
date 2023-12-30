@@ -20,15 +20,13 @@
         app:hintTextColor="@color/teal_200"
         app:startIconCheckable="true"
         app:startIconDrawable="@drawable/icon_user"
-        app:startIconTint="@color/teal_200"
-        >
+        app:startIconTint="@color/teal_200">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietGmail"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -49,8 +47,7 @@
             android:id="@+id/tietPassword"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -66,18 +63,29 @@
         android:textSize="17sp"
         android:textStyle="bold" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bSignIn"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/custom_welcome_button"
-        android:paddingHorizontal="50dp"
-        android:paddingVertical="10dp"
-        android:text="Đăng nhập"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:layout_marginTop="10dp">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/custom_welcome_button"
+            android:paddingHorizontal="50dp"
+            android:paddingVertical="10dp"
+            android:text="Đăng nhập"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/pbLoadingSignIn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
+    </FrameLayout>
 </LinearLayout>

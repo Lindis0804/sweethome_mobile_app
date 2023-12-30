@@ -1,6 +1,7 @@
 package com.ldh.smarthouse.View.Profile;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.ldh.smarthouse.API.ApiService;
+import com.ldh.smarthouse.Const.Constants;
+import com.ldh.smarthouse.Const.PreferenceManager;
 import com.ldh.smarthouse.Const.Utils;
 import com.ldh.smarthouse.Model.Response.DataResponse;
 import com.ldh.smarthouse.Model.User;
@@ -33,11 +36,13 @@ public class FragmentProfile extends Fragment {
     private TextView tvGmail,tvName,tvPhoneNumber;
     private AppCompatButton bEditProfile,bLogOut;
     private DataResponse res;
+    private PreferenceManager preferenceManager;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile,container,false);
-        token = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE).getString("token","");
+        preferenceManager = new PreferenceManager(requireContext());
+        token = preferenceManager.getString(Constants.KEY_TOKEN);
         findId(v);
         ApiService.apiService.getUserById(token).enqueue(new Callback<DataResponse>() {
             @Override
@@ -46,8 +51,8 @@ public class FragmentProfile extends Fragment {
                     res = response.body();
                     User user = res.getUser();
                     if (user !=null){
-                        Glide.with(getActivity().getApplicationContext()).load(user.getAvatar()).into(ivAvatar);
-                        Glide.with(getActivity().getApplicationContext()).load(user.getWallpaper()).into(ivWallpaper);
+                        Glide.with(requireContext().getApplicationContext()).load(user.getAvatar()).into(ivAvatar);
+                        Glide.with(requireContext().getApplicationContext()).load(user.getWallpaper()).into(ivWallpaper);
                         tvGmail.setText(user.getEmail());
                         tvName.setText(user.getName());
                         tvPhoneNumber.setText(user.getPhone_number());
@@ -66,9 +71,9 @@ public class FragmentProfile extends Fragment {
         bLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSharedPreferences("UserInfo",Context.MODE_PRIVATE).edit().clear().apply();
+                preferenceManager.remove(Constants.KEY_TOKEN);
                 Toast.makeText(getActivity(), "Log out.", Toast.LENGTH_SHORT).show();
-                Utils.redirectToActivitySign(getContext(),getActivity());
+                Utils.redirectToActivitySign(getContext(),requireActivity());
             }
         });
         return v;

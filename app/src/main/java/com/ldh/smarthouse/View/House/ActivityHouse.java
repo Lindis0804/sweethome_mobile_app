@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.ldh.smarthouse.API.ApiService;
 import com.ldh.smarthouse.Model.Response.DataResponse;
+import com.ldh.smarthouse.Model.Response.GetRoomsResult;
 import com.ldh.smarthouse.Model.Room;
 import com.ldh.smarthouse.R;
 
@@ -29,7 +30,6 @@ public class ActivityHouse extends AppCompatActivity {
     private ViewPager2 vpRooms;
     private VPRoomAdapter vpRoomAdapter;
     private ArrayList<Room> rooms = new ArrayList<>();
-    private DataResponse res;
     private String token;
     private int houseId;
     private ImageButton ibBack;
@@ -67,11 +67,11 @@ public class ActivityHouse extends AppCompatActivity {
     }
 
     public void getRooms() {
-        ApiService.apiService.getRooms(token, houseId).enqueue(new Callback<DataResponse>() {
+        ApiService.apiService.getRooms(token, houseId).enqueue(new Callback<GetRoomsResult>() {
             @Override
-            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+            public void onResponse(Call<GetRoomsResult> call, Response<GetRoomsResult> response) {
                 if (response.code() == 200) {
-                    res = response.body();
+                    GetRoomsResult res = response.body();
                     rooms = res.getRooms();
                     vpRoomAdapter.setData(rooms);
                 } else {
@@ -80,7 +80,7 @@ public class ActivityHouse extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<DataResponse> call, Throwable t) {
+            public void onFailure(Call<GetRoomsResult> call, Throwable t) {
                 Log.v("TAG", "Error in calling get rooms api: " + t.getMessage());
             }
         });
